@@ -1,8 +1,8 @@
-// 로그인 한 유저의 데이터 객체를 변환하는 함수
+// 로그인 한 유저의 데이터 객체를 반환하는 함수
 export const getLoginUserInfo = () => {
   return {
     token: localStorage.getItem('ACCESS_TOKEN'),
-    userName: localStorage.getItem('LOGIN_USERNAME'),
+    username: localStorage.getItem('LOGIN_USERNAME'),
     role: localStorage.getItem('USER_ROLE'),
   };
 };
@@ -15,5 +15,5 @@ export const getLoginUserInfo = () => {
 // };
 
 // 특정 값이나 메서드의 리턴값을 논리 타입으로 변환하고 할 때 !!를 붙입니다.
-// localStroage.getItem의 결과를 논리타입으로 리턴 -> 값이 있으면 treu, null이면 false로 리턴.
+// localStorage.getItem의 결과를 논리타입으로 리턴 -> 값이 있으면 true, null이면 false로 리턴.
 export const isLogin = () => !!localStorage.getItem('ACCESS_TOKEN');
