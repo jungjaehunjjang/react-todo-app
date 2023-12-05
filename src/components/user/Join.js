@@ -236,17 +236,17 @@ const Join = () => {
       기존 회원가입은 단순히 텍스트를 객체로 모은 후 JSON으로 변환해서 요청 보내주면 끝.
       이제는 프로필 이미지가 추가됨. -> 파일 첨부 요청은 multipart/form-data로 전송해야 함.
       FormData 객체를 활용해서 Content-type을 multipart/form-data로 지정한 후 전송하려 함.
-      그럼 JSON 데이터는? Content-type이 application/json이다.
+      그럼 JSON 데이터는? Content-type이 application/json이다. 
       Content-type이 서로 다른 데이터를 한번에 FormData에 감싸서 보내면 
       415(unsupported Media Type) 에러가 발생함.
-      그렇다면 -> JSON을 Blob으로 바꿔서 함께 보내자.
-      Blob은 이미지, 사운드, 비디오 같은 멀티미디어 파일을바이트 단위로 쪼개어 파일 손상을 방지하게
+      그렇다면 -> JSON을 Blob으로 바꿔서 함께 보내자. 
+      Blob은 이미지, 사운드, 비디오 같은 멀티미디어 파일을 바이트 단위로 쪼개어 파일 손상을 방지하게 
       해 주는 타입. -> multipart/form-data에도 허용됨.
     */
 
     // JSON을 Blob타입으로 변경 후 FormData에 넣기
     const userJsonBlob = new Blob([JSON.stringify(userValue)], {
-      type: ' application/json',
+      type: 'application/json',
     });
 
     // 이미지 파일과 회원정보 JSON을 하나로 묶어서 보낼 예정.
@@ -262,7 +262,7 @@ const Join = () => {
 
     if (res.status === 200) {
       alert('회원가입에 성공했습니다!');
-      //로그인 페이지로 리다이렉트
+      // 로그인 페이지로 리다이렉트
       redirection('/login');
     } else {
       alert('서버와의 통신이 원활하지 않습니다.');
@@ -298,9 +298,9 @@ const Join = () => {
       fileExt !== 'jpeg' &&
       fileExt !== 'gif'
     ) {
-      alert('이미지 파일(jpg, png, jpeg, gif)만 등록이 가능합니다.');
+      alert('이미지 파일(jpg, png, jpeg, gif)만 등록이 가능합니다!');
       // 맞지 않는 파일을 첨부한 것을 발견했다면, input의 상태도 원래대로 돌려놓아야 한다.
-      // 그렇지 않으면 잘못된 파일을 input태그가 여전히 가지고 있게 됨. -> 서버 요청 시 에러 유발!
+      // 그렇지 않으면 잘못된 파일을 input 태그가 여전히 가지고 있게 됨. -> 서버 요청 시 에러 유발!
       $fileTag.current.value = '';
       return;
     }
